@@ -1,0 +1,6 @@
+Food
+Travel
+House Rent
+Mobile Bill
+Medical
+Others
