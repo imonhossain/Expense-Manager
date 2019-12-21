@@ -36,6 +36,8 @@ void getCategoryList();
 void displayCategoryList();
 void addCategory();
 void updateCategory();
+void categoryWiseExpance();
+
 void save();
 void deleteExp();
 void showCurrentBalance();
@@ -64,6 +66,7 @@ int main()
         printf("5. For Update category, press 5\n");
         printf("6. For Delete expense, press 6\n");
         printf("7. Show Current Balance , press 7\n");
+        printf("8. Show Current Balance , press 8\n");
         printf("9. For Save, press 9\n");
         scanf("%d", &n);
         if(n==1){
@@ -80,6 +83,9 @@ int main()
             deleteExp();
         }else if(n==7){
             showCurrentBalance();
+        }
+        else if(n==8){
+            categoryWiseExpance();
         }
         else if(n==9){
             save();
@@ -128,7 +134,7 @@ void displayExpList(){
     int i =1;
     for (itr = expList.begin(); itr != expList.end(); ++itr) {
         cout<<itr->first<< ". "<< itr->second.eName << '\t' << itr->second.eCategory
-             << '\t' << itr->second.eTime << '\n';
+             << '\t' << itr->second.eAmount << '\n';
     }
 }
 void deleteExp(){
@@ -214,4 +220,21 @@ void displayCategoryList(){
     for(int i =1; i<=totalCategory; i++){
         cout<<i<<"."<<'\t'<<cateogryList[i]<<endl;
     }
+    cout<<endl<<endl;
+}
+void categoryWiseExpance(){
+    displayCategoryList();
+    int i =1, eCategoryNo;
+    cout<<"Please input your Category No : ";
+    cin>>eCategoryNo;
+
+    map<int, Expense>::iterator itr;
+    for (itr = expList.begin(); itr != expList.end(); ++itr) {
+        if(eCategoryNo == itr->second.eCategoryNo){
+            cout<<itr->first<< ". "<< itr->second.eName << '\t' << itr->second.eCategory
+             << '\t' << itr->second.eAmount << '\n';
+        }
+
+    }
+    cout<<endl<<endl;
 }
